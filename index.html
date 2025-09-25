@@ -10,7 +10,7 @@
       background: black;
       overflow: hidden;
       color: white;
-      font-family: cursive;
+      font-family: cursive; /* same beautiful font as before */
     }
 
     /* Scrolling text at top */
@@ -64,9 +64,10 @@
       left: 50%;
       transform: translate(-50%, -50%);
       color: #ffccd5;
-      font-size: 32px;
+      font-size: 40px;
       font-weight: bold;
-      border-right: 3px solid #fff;
+      font-family: cursive; /* keep same beautiful style */
+      border-right: 3px solid #ffccd5;
       white-space: nowrap;
       overflow: hidden;
       width: 0;
@@ -79,7 +80,7 @@
     }
     @keyframes blink {
       from, to { border-color: transparent }
-      50% { border-color: white; }
+      50% { border-color: #ffccd5; }
     }
 
     /* Sparkles */
