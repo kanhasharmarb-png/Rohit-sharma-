@@ -2,102 +2,122 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Surprise for You ❤️</title>
+  <title>For My Love 💗</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: black;
-      color: white;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #ffccdc;
       overflow: hidden;
-      font-family: "Brush Script MT", cursive;
+      font-family: 'Brush Script MT', cursive;
     }
 
-    /* Floating hearts */
-    .heart {
-      position: fixed;
-      bottom: -10px;
-      color: #ff69b4;
-      font-size: 24px;
-      animation: floatUp 6s linear infinite;
+    /* Center Card */
+    .card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      font-size: 28px;
+      color: #d63384;
+      box-shadow: 0 0 25px rgba(0,0,0,0.2);
+      z-index: 2;
     }
 
-    @keyframes floatUp {
-      from { transform: translateY(0); opacity: 1; }
-      to { transform: translateY(-110vh); opacity: 0; }
-    }
-
-    /* Floating Sorry text */
-    .sorry {
-      position: fixed;
-      bottom: -20px;
-      color: rgba(255,255,255,0.2);
-      font-size: 20px;
-      animation: floatUp 8s linear infinite;
-    }
-
-    /* Scrolling text at top */
-    .scrolling-text {
-      position: fixed;
+    /* Scrolling text top */
+    .scroll-text {
+      position: absolute;
       top: 10px;
       width: 100%;
       white-space: nowrap;
       overflow: hidden;
+      font-size: 26px;
+      color: #c2185b;
+      font-weight: bold;
+      animation: scroll-left 15s linear infinite;
     }
-    .scrolling-text span {
-      display: inline-block;
-      padding-left: 100%;
-      animation: scrollLeft 15s linear infinite;
-      font-size: 28px;
-      color: #ff66cc;
-    }
-
-    @keyframes scrollLeft {
+    @keyframes scroll-left {
       0% { transform: translateX(100%); }
       100% { transform: translateX(-100%); }
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      bottom: -50px;
+      font-size: 24px;
+      color: #ff69b4;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.8;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 0.8; }
+      100% { transform: translateY(-110vh) scale(1.6); opacity: 0; }
+    }
+
+    /* Floating sorry text */
+    .sorry {
+      position: absolute;
+      bottom: -50px;
+      font-size: 20px;
+      color: #ff1493;
+      animation: floatUp 8s linear infinite;
+      opacity: 0.7;
+      white-space: nowrap;
     }
   </style>
 </head>
 <body>
+  <!-- Scrolling text -->
+  <div class="scroll-text">Kaisa laga meri jaan?? 🫣💋💕</div>
 
-  <!-- Background Song -->
-  <audio id="bgMusic" autoplay>
+  <!-- Center message card -->
+  <div class="card">
+    💖 I Love You 💖 <br>
+    Beauty meri jaan 🥺🤍😭 💓🫂 <br>
+    Mere se shaadi karlo... 🌍💋💕
+  </div>
+
+  <!-- Audio -->
+  <audio id="bg-music" autoplay loop>
     <source src="song.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- Scrolling Text -->
-  <div class="scrolling-text">
-    <span>Kaisa laga meri jaan??🫣💋💕</span>
-  </div>
-
   <script>
-    // Play music on tap if blocked
-    const music = document.getElementById("bgMusic");
+    // Handle autoplay restrictions
+    const music = document.getElementById("bg-music");
     document.body.addEventListener("click", () => {
-      music.play();
+      music.play().catch(()=>{});
     });
 
-    // Floating hearts
-    setInterval(() => {
+    // Create floating hearts + sorry
+    function createHeart() {
       const heart = document.createElement("div");
-      heart.className = "heart";
+      heart.classList.add("heart");
+      heart.textContent = "💗";
       heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = (20 + Math.random() * 30) + "px";
-      heart.innerText = "💗";
+      heart.style.animationDuration = (4 + Math.random() * 4) + "s";
       document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 6000);
-    }, 500);
+      setTimeout(()=>heart.remove(),6000);
+    }
 
-    // Floating Sorry
-    setInterval(() => {
+    function createSorry() {
       const sorry = document.createElement("div");
-      sorry.className = "sorry";
+      sorry.classList.add("sorry");
+      sorry.textContent = "Sorry Sorry sorry..🥺💗💋🫀";
       sorry.style.left = Math.random() * 100 + "vw";
-      sorry.innerText = "Sorry";
+      sorry.style.animationDuration = (6 + Math.random() * 5) + "s";
       document.body.appendChild(sorry);
-      setTimeout(() => sorry.remove(), 8000);
-    }, 1000);
-  </script>
+      setTimeout(()=>sorry.remove(),8000);
+    }
 
+    setInterval(createHeart, 500);
+    setInterval(createSorry, 2000);
+  </script>
 </body>
 </html>
