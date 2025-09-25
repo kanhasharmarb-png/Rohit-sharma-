@@ -2,45 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Gift Surprise 🎁</title>
+  <title>Surprise for You ❤️</title>
   <style>
     body {
       margin: 0;
-      height: 100vh;
+      padding: 0;
       background: black;
-      overflow: hidden;
       color: white;
-      font-family: cursive;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
+      overflow: hidden;
+      font-family: "Brush Script MT", cursive;
     }
 
     /* Gift Box */
-    #gift-box {
-      font-size: 120px;
+    #giftBox {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 100px;
       cursor: pointer;
       animation: bounce 1s infinite;
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
+      text-align: center;
     }
 
-    /* Center text under gift */
-    #gift-text {
+    #giftText {
+      font-size: 28px;
       margin-top: 15px;
-      font-size: 24px;
-      font-weight: bold;
-      color: #ff4d6d;
-      text-align: center;
-      animation: pulse 1.5s infinite;
+      color: pink;
     }
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.1); opacity: 0.7; }
-      100% { transform: scale(1); opacity: 1; }
+
+    @keyframes bounce {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -55%) scale(1.1); }
     }
 
     /* Hidden content */
@@ -48,91 +41,101 @@
       display: none;
     }
 
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      bottom: -10px;
+      color: #ff69b4;
+      font-size: 24px;
+      animation: floatUp 6s linear infinite;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-110vh); opacity: 0; }
+    }
+
+    /* Floating Sorry text */
+    .sorry {
+      position: fixed;
+      bottom: -20px;
+      color: rgba(255,255,255,0.2);
+      font-size: 20px;
+      animation: floatUp 8s linear infinite;
+    }
+
     /* Scrolling text at top */
-    .scroll-text {
+    .scrolling-text {
       position: fixed;
       top: 10px;
       width: 100%;
       white-space: nowrap;
       overflow: hidden;
-      font-size: 28px;
-      font-weight: bold;
-      color: #ff4d6d;
-      z-index: 10;
     }
-    .scroll-text span {
+    .scrolling-text span {
       display: inline-block;
       padding-left: 100%;
-      animation: scroll-left 12s linear infinite;
+      animation: scrollLeft 15s linear infinite;
+      font-size: 28px;
+      color: #ff66cc;
     }
-    @keyframes scroll-left {
-      0%   { transform: translateX(100%); }
+
+    @keyframes scrollLeft {
+      0% { transform: translateX(100%); }
       100% { transform: translateX(-100%); }
-    }
-
-    /* Floating hearts */
-    .heart {
-      position: absolute;
-      color: #ff4d6d;
-      font-size: 24px;
-      animation: floatUp 6s linear infinite;
-      opacity: 0.8;
-    }
-    @keyframes floatUp {
-      0% { transform: translateY(100vh); opacity: 1; }
-      100% { transform: translateY(-10vh); opacity: 0; }
-    }
-
-    /* Floating sorry text */
-    .sorry {
-      position: absolute;
-      color: #ffd1dc;
-      font-size: 20px;
-      animation: floatUp 8s linear infinite;
-      opacity: 0.7;
     }
   </style>
 </head>
 <body>
-  <!-- Gift Box with text -->
-  <div id="gift-box">🎁</div>
-  <div id="gift-text">Open it please baby🫣🙈🫀</div>
 
-  <!-- Hidden Surprise Content -->
+  <!-- Gift Box -->
+  <div id="giftBox" onclick="openGift()">
+    🎁
+    <div id="giftText">Open it please baby🫣🙈🫀</div>
+  </div>
+
+  <!-- Surprise Content -->
   <div id="content">
-    <div class="scroll-text"><span>Kaisa laga meri jaan??🫣💋💕</span></div>
-    <audio id="bg-music" loop>
+    <audio id="bgMusic" autoplay>
       <source src="song.mp3" type="audio/mpeg">
     </audio>
+
+    <div class="scrolling-text">
+      <span>Kaisa laga meri jaan??🫣💋💕</span>
+    </div>
   </div>
 
   <script>
-    const giftBox = document.getElementById("gift-box");
-    const giftText = document.getElementById("gift-text");
-    const content = document.getElementById("content");
-    const music = document.getElementById("bg-music");
+    function openGift() {
+      document.getElementById("giftBox").style.display = "none";
+      document.getElementById("content").style.display = "block";
 
-    giftBox.addEventListener("click", () => {
-      giftBox.style.display = "none";
-      giftText.style.display = "none";
-      content.style.display = "block";
+      // Play music
+      const music = document.getElementById("bgMusic");
       music.play();
 
-      // Floating hearts & sorry
-      function createElement(content, className) {
-        const el = document.createElement("div");
-        el.className = className;
-        el.textContent = content;
-        el.style.left = Math.random() * 100 + "vw";
-        el.style.fontSize = Math.random() * 20 + 20 + "px";
-        el.style.animationDuration = (Math.random() * 5 + 5) + "s";
-        document.body.appendChild(el);
-        setTimeout(() => el.remove(), 8000);
-      }
+      // Create floating hearts
+      setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (20 + Math.random() * 30) + "px";
+        heart.innerText = "💗";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 6000);
+      }, 500);
 
-      setInterval(() => createElement("💗", "heart"), 600);
-      setInterval(() => createElement("Sorry 🥺🙏🏻", "sorry"), 1000);
-    });
+      // Create floating "Sorry"
+      setInterval(() => {
+        const sorry = document.createElement("div");
+        sorry.className = "sorry";
+        sorry.style.left = Math.random() * 100 + "vw";
+        sorry.innerText = "Sorry";
+        document.body.appendChild(sorry);
+        setTimeout(() => sorry.remove(), 8000);
+      }, 1000);
+    }
   </script>
+
 </body>
 </html>
