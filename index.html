@@ -3,82 +3,98 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>I Love You</title>
+  <title>I Love You ❤️</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #ff6fb7, #ff94c2);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #ff7eb9;
       overflow: hidden;
-      text-align: center;
+      font-family: 'Poppins', sans-serif;
     }
 
     h1 {
       color: white;
-      margin-top: 20px;
-      font-size: 28px; /* Top heading size */
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      font-size: 28px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+      position: absolute;
+      top: 20px;
+      text-align: center;
     }
 
-    .love-box {
-      background: rgba(0,0,0,0.3);
-      color: white;
-      padding: 25px;
-      margin: 60px auto;
+    .card {
+      background: rgba(100, 0, 50, 0.6);
+      padding: 25px 40px;
       border-radius: 15px;
-      width: 80%;
-      max-width: 400px;
+      text-align: center;
+      color: white;
+      box-shadow: 0px 4px 20px rgba(0,0,0,0.3);
+      z-index: 2;
     }
 
-    .love-box h2 {
-      font-size: 26px; /* "I Love You" */
-      margin-bottom: 15px;
+    .card h2 {
+      font-size: 30px;
+      margin: 0 0 10px;
     }
 
-    .love-box p {
-      font-size: 18px; /* Text lines */
-      margin: 8px 0;
+    .card p {
+      font-size: 20px;
+      margin: 5px 0;
     }
 
-    /* Floating hearts */
     .heart {
       position: absolute;
-      color: #ff4da6;
-      font-size: 24px;
-      animation: float 6s linear infinite;
+      color: #ff69b4;
+      font-size: 28px;
+      animation: float 6s infinite ease-in;
       opacity: 0.8;
     }
 
     @keyframes float {
-      0% {
-        transform: translateY(100vh) scale(0.8);
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-10vh) scale(1.2);
-        opacity: 0;
-      }
+      0% { transform: translateY(100vh) scale(1); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
     }
   </style>
 </head>
 <body>
   <h1>Kaisa laga meri jaan?? 🫣💋💕</h1>
 
-  <div class="love-box">
+  <div class="card">
     <h2>💖 I Love You 💖</h2>
     <p>Beauty meri jaan 🥺🤲😭💗👫</p>
     <p>Mere se shaadi karlo... 🌍💋💕</p>
   </div>
 
-  <!-- Floating hearts -->
-  <div class="heart" style="left:10%; animation-delay:0s;">💖</div>
-  <div class="heart" style="left:30%; animation-delay:2s;">💖</div>
-  <div class="heart" style="left:50%; animation-delay:4s;">💖</div>
-  <div class="heart" style="left:70%; animation-delay:1s;">💖</div>
-  <div class="heart" style="left:90%; animation-delay:3s;">💖</div>
+  <audio id="bg-music" loop>
+    <source src="https://www.computerhope.com/jargon/m/example.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const music = document.getElementById("bg-music");
+    document.body.addEventListener("click", () => {
+      music.play();
+    }, { once: true });
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 8000);
+    }
+
+    setInterval(createHeart, 500);
+  </script>
 </body>
 </html>
