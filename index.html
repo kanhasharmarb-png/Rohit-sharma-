@@ -6,7 +6,7 @@
   <title>Surprise ❤️</title>
   <style>
     body {
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
       height: 100vh;
       margin: 0;
       display: flex;
@@ -18,6 +18,20 @@
       overflow: hidden;
       flex-direction: column;
     }
+
+    /* Floating hearts background */
+    .heart {
+      position: absolute;
+      bottom: -50px;
+      color: rgba(255,255,255,0.8);
+      font-size: 24px;
+      animation: floatUp 6s linear infinite;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+    }
+
     /* Top scrolling text */
     .top-text {
       position: absolute;
@@ -25,6 +39,7 @@
       width: 100%;
       white-space: nowrap;
       overflow: hidden;
+      z-index: 5;
     }
     .top-text span {
       display: inline-block;
@@ -33,12 +48,13 @@
       font-size: 1.5rem;
       font-weight: bold;
       color: #fff;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     }
     @keyframes scroll-right {
       0% { transform: translateX(-100%); }
       100% { transform: translateX(100%); }
     }
+
     /* Center container */
     .container {
       background: rgba(0,0,0,0.5);
@@ -77,14 +93,29 @@
     <source src="song.mp3" type="audio/mpeg">
   </audio>
 
+  <!-- Hearts Generator -->
   <script>
-    // Autoplay unlock trick for mobile browsers
+    // Autoplay unlock trick
     document.addEventListener("click", function() {
       let audio = document.getElementById("bg-music");
       if (audio.paused) {
         audio.play();
       }
     });
+
+    // Hearts floating animation
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 20 + "px";
+      heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 6000);
+    }
+    setInterval(createHeart, 500);
   </script>
 </body>
 </html>
