@@ -10,7 +10,7 @@
       background: black;
       overflow: hidden;
       color: white;
-      font-family: cursive; /* same beautiful font as before */
+      font-family: cursive;
     }
 
     /* Scrolling text at top */
@@ -56,55 +56,11 @@
       animation: floatUp 8s linear infinite;
       opacity: 0.7;
     }
-
-    /* Typewriter text in center */
-    .typewriter {
-      position: absolute;
-      top: 45%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: #ffccd5;
-      font-size: 40px;
-      font-weight: bold;
-      font-family: cursive; /* keep same beautiful style */
-      border-right: 3px solid #ffccd5;
-      white-space: nowrap;
-      overflow: hidden;
-      width: 0;
-      animation: typing 5s steps(40, end) forwards, blink 0.75s step-end infinite;
-      z-index: 20;
-    }
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-    @keyframes blink {
-      from, to { border-color: transparent }
-      50% { border-color: #ffccd5; }
-    }
-
-    /* Sparkles */
-    .sparkle {
-      position: absolute;
-      width: 5px;
-      height: 5px;
-      background: white;
-      border-radius: 50%;
-      animation: sparkleAnim 3s linear infinite;
-      opacity: 0.8;
-    }
-    @keyframes sparkleAnim {
-      0% { transform: translateY(100vh) scale(0); opacity: 1; }
-      100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
-    }
   </style>
 </head>
 <body>
   <!-- Scrolling text -->
   <div class="scroll-text"><span>Kaisa laga meri jaan??🫣💋💕</span></div>
-
-  <!-- Typewriter text -->
-  <div class="typewriter">I Love You Beauty meri jaan 💕</div>
 
   <!-- Background audio -->
   <audio id="bg-music" autoplay loop>
@@ -131,17 +87,6 @@
 
     setInterval(() => createElement("💗", "heart"), 600);
     setInterval(() => createElement("Sorry 🥺🙏🏻", "sorry"), 1000);
-
-    // Sparkles
-    function createSparkle() {
-      const s = document.createElement("div");
-      s.className = "sparkle";
-      s.style.left = Math.random() * 100 + "vw";
-      s.style.animationDuration = (Math.random() * 3 + 2) + "s";
-      document.body.appendChild(s);
-      setTimeout(() => s.remove(), 4000);
-    }
-    setInterval(createSparkle, 200);
   </script>
 </body>
 </html>
