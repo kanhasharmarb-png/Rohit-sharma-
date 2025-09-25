@@ -11,36 +11,43 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #ffccdc;
+      background: #ff94b6;
       overflow: hidden;
-      font-family: 'Brush Script MT', cursive;
+      font-family: Arial, sans-serif;
     }
 
-    /* Center Card */
+    /* Card in center */
     .card {
       position: relative;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(0, 0, 0, 0.3);
       padding: 40px;
       border-radius: 20px;
       text-align: center;
-      font-size: 28px;
-      color: #d63384;
+      font-size: 24px;
+      color: #fff;
       box-shadow: 0 0 25px rgba(0,0,0,0.2);
       z-index: 2;
     }
 
-    /* Scrolling text top */
+    .card h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    /* Top scrolling text */
     .scroll-text {
       position: absolute;
-      top: 10px;
+      top: 15px;
       width: 100%;
       white-space: nowrap;
       overflow: hidden;
       font-size: 26px;
-      color: #c2185b;
       font-weight: bold;
-      animation: scroll-left 15s linear infinite;
+      color: #fff;
+      animation: scroll-left 12s linear infinite;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
     }
+
     @keyframes scroll-left {
       0% { transform: translateX(100%); }
       100% { transform: translateX(-100%); }
@@ -50,52 +57,54 @@
     .heart {
       position: absolute;
       bottom: -50px;
-      font-size: 24px;
-      color: #ff69b4;
+      font-size: 28px;
+      color: #ff2d75;
       animation: floatUp 6s linear infinite;
       opacity: 0.8;
     }
+
     @keyframes floatUp {
       0% { transform: translateY(0) scale(1); opacity: 0.8; }
       100% { transform: translateY(-110vh) scale(1.6); opacity: 0; }
     }
 
-    /* Floating sorry text */
+    /* Floating Sorry text */
     .sorry {
       position: absolute;
       bottom: -50px;
       font-size: 20px;
-      color: #ff1493;
-      animation: floatUp 8s linear infinite;
+      color: #fff;
+      font-weight: bold;
+      animation: floatUp 7s linear infinite;
       opacity: 0.7;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
       white-space: nowrap;
     }
   </style>
 </head>
 <body>
-  <!-- Scrolling text -->
+  <!-- Scrolling text top -->
   <div class="scroll-text">Kaisa laga meri jaan?? 🫣💋💕</div>
 
-  <!-- Center message card -->
+  <!-- Center message -->
   <div class="card">
-    💖 I Love You 💖 <br>
+    <h1>💗 I Love You 💗</h1>
     Beauty meri jaan 🥺🤍😭 💓🫂 <br>
     Mere se shaadi karlo... 🌍💋💕
   </div>
 
-  <!-- Audio -->
+  <!-- Background music -->
   <audio id="bg-music" autoplay loop>
     <source src="song.mp3" type="audio/mpeg">
   </audio>
 
   <script>
-    // Handle autoplay restrictions
     const music = document.getElementById("bg-music");
     document.body.addEventListener("click", () => {
       music.play().catch(()=>{});
     });
 
-    // Create floating hearts + sorry
+    // Create floating heart
     function createHeart() {
       const heart = document.createElement("div");
       heart.classList.add("heart");
@@ -106,6 +115,7 @@
       setTimeout(()=>heart.remove(),6000);
     }
 
+    // Create floating Sorry
     function createSorry() {
       const sorry = document.createElement("div");
       sorry.classList.add("sorry");
@@ -113,11 +123,11 @@
       sorry.style.left = Math.random() * 100 + "vw";
       sorry.style.animationDuration = (6 + Math.random() * 5) + "s";
       document.body.appendChild(sorry);
-      setTimeout(()=>sorry.remove(),8000);
+      setTimeout(()=>sorry.remove(),7000);
     }
 
     setInterval(createHeart, 500);
-    setInterval(createSorry, 2000);
+    setInterval(createSorry, 2500);
   </script>
 </body>
 </html>
