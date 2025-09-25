@@ -18,13 +18,26 @@
       font-family: 'Poppins', sans-serif;
     }
 
-    h1 {
-      color: white;
-      font-size: 28px;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    .marquee {
       position: absolute;
       top: 20px;
-      text-align: center;
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .marquee span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: marquee 12s linear infinite;
+      font-size: 28px;
+      color: white;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    }
+
+    @keyframes marquee {
+      0%   { transform: translateX(0%); }
+      100% { transform: translateX(-100%); }
     }
 
     .card {
@@ -63,7 +76,8 @@
   </style>
 </head>
 <body>
-  <h1>Kaisa laga meri jaan?? 🫣💋💕</h1>
+  <!-- Moving text -->
+  <div class="marquee"><span>Kaisa laga meri jaan?? 🫣💋💕</span></div>
 
   <div class="card">
     <h2>💖 I Love You 💖</h2>
@@ -72,7 +86,7 @@
   </div>
 
   <audio id="bg-music" loop>
-    <source src="https://www.computerhope.com/jargon/m/example.mp3" type="audio/mpeg">
+    <source src="song.mp3" type="audio/mpeg">
   </audio>
 
   <script>
@@ -84,7 +98,7 @@
     function createHeart() {
       const heart = document.createElement("div");
       heart.classList.add("heart");
-      heart.innerHTML = "💖";
+      heart.innerHTML = "💗";
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.animationDuration = (5 + Math.random() * 5) + "s";
       document.body.appendChild(heart);
