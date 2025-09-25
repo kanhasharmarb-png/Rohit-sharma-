@@ -20,7 +20,7 @@
     .heart {
       position: absolute;
       color: #ff4d88;
-      font-size: 24px;
+      font-size: 24px; /* 👈 pehle wala size */
       animation: floatUp 6s linear infinite;
       opacity: 0.8;
     }
@@ -39,8 +39,8 @@
     /* Floating text (Sorry Sorry...) */
     .floating-text {
       position: absolute;
-      font-size: 20px;   /* same as card text */
-      font-weight: 600;  /* bold same look */
+      font-size: 20px;   /* 👈 pehle wala exact */
+      font-weight: 600;
       color: white;
       opacity: 0.9;
       animation: floatUp 8s linear infinite;
@@ -50,21 +50,21 @@
     /* Center card */
     .card {
       background: rgba(128, 0, 64, 0.8);
-      padding: 25px 35px;
-      border-radius: 15px;
+      padding: 30px 40px;
+      border-radius: 20px;
       text-align: center;
       color: white;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     }
 
     .card h1 {
       margin: 0;
-      font-size: 26px; /* main heading */
+      font-size: 32px; /* 👈 heading pehle jaisa */
     }
 
     .card p {
-      margin: 10px 0 0;
-      font-size: 20px; /* same as floating text */
+      margin: 15px 0 0;
+      font-size: 20px; /* 👈 content pehle jaisa */
       font-weight: 600;
     }
   </style>
