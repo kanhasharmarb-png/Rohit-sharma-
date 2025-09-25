@@ -2,106 +2,84 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Surprise for My Jaan</title>
+  <title>Surprise 💕</title>
   <style>
     body {
       margin: 0;
       height: 100vh;
-      background: linear-gradient(120deg, #ff9a9e, #fecfef);
+      background: black;
       overflow: hidden;
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    /* Scrolling top text */
-    .top-text {
-      position: absolute;
-      top: 10px;
-      white-space: nowrap;
-      font-size: 24px;
-      font-weight: bold;
       color: white;
-      text-shadow: 2px 2px 5px #000;
-      animation: moveText 12s linear infinite;
+      font-family: cursive;
     }
 
-    @keyframes moveText {
-      0% { transform: translateX(100%); }
+    /* Scrolling text at top */
+    .scroll-text {
+      position: fixed;
+      top: 10px;
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      font-size: 28px;
+      font-weight: bold;
+      color: #ff4d6d;
+    }
+    .scroll-text span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scroll-left 12s linear infinite;
+    }
+    @keyframes scroll-left {
+      0%   { transform: translateX(100%); }
       100% { transform: translateX(-100%); }
     }
 
-    /* Floating items (💗 + Sorry text) */
-    .floating {
+    /* Floating hearts */
+    .heart {
       position: absolute;
-      font-size: 22px;
-      animation: floatUp 10s linear infinite;
+      color: #ff4d6d;
+      font-size: 24px;
+      animation: floatUp 6s linear infinite;
       opacity: 0.8;
     }
-
     @keyframes floatUp {
-      from { transform: translateY(100vh); opacity: 1; }
-      to { transform: translateY(-10vh); opacity: 0; }
+      0% { transform: translateY(100vh); opacity: 1; }
+      100% { transform: translateY(-10vh); opacity: 0; }
     }
 
-    /* Message card */
-    .card {
-      background: rgba(0, 0, 0, 0.6);
-      padding: 20px 30px;
-      border-radius: 20px;
-      color: white;
-      z-index: 10;
-    }
-
-    .card h1 {
-      font-size: 36px;
-      margin: 0 0 10px;
-    }
-
-    .card p {
+    /* Floating sorry text */
+    .sorry {
+      position: absolute;
+      color: #ffd1dc;
       font-size: 20px;
-      margin: 5px 0;
+      animation: floatUp 8s linear infinite;
+      opacity: 0.7;
     }
   </style>
 </head>
 <body>
+  <!-- Scrolling text -->
+  <div class="scroll-text"><span>Kaisa laga meri jaan??🫣💋💕</span></div>
 
-  <!-- Top scrolling text -->
-  <div class="top-text">Kaisa laga meri jaan?? 🫣💋💕</div>
-
-  <!-- Message card -->
-  <div class="card">
-    <h1>💗 I Love You 💗</h1>
-    <p>Beauty meri jaan 🥺💕😭💞🫂</p>
-    <p>Mere se shaadi karlo... 🌍💋💕</p>
-  </div>
-
-  <!-- Background floating items -->
-  <script>
-    const items = ["💗", "Sorry Sorry Sorry 🥺💕🫀"];
-
-    function createFloatingItem() {
-      const el = document.createElement("div");
-      el.className = "floating";
-      el.innerText = items[Math.floor(Math.random() * items.length)];
-      el.style.left = Math.random() * 100 + "vw";
-      el.style.animationDuration = (5 + Math.random() * 5) + "s";
-      document.body.appendChild(el);
-
-      setTimeout(() => el.remove(), 10000);
-    }
-
-    setInterval(createFloatingItem, 800);
-  </script>
-
-  <!-- Background music -->
+  <!-- Background audio -->
   <audio autoplay loop>
     <source src="song.mp3" type="audio/mpeg">
   </audio>
 
+  <script>
+    function createElement(content, className) {
+      const el = document.createElement("div");
+      el.className = className;
+      el.textContent = content;
+      el.style.left = Math.random() * 100 + "vw";
+      el.style.fontSize = Math.random() * 20 + 20 + "px";
+      el.style.animationDuration = (Math.random() * 5 + 5) + "s";
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 8000);
+    }
+
+    setInterval(() => createElement("💗", "heart"), 600);
+    setInterval(() => createElement("Sorry 🥺🙏🏻", "sorry"), 1000);
+  </script>
 </body>
 </html>
