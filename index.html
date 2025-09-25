@@ -4,14 +4,12 @@
   <meta charset="UTF-8">
   <title>For My Love 💗</title>
   <style>
-    body {
+    html, body {
       margin: 0;
       padding: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #ff94b6; /* Pink background */
+      height: 100%;
+      width: 100%;
+      background-color: #ff94b6 !important; /* force pink */
       overflow: hidden;
       font-family: Arial, sans-serif;
       position: relative;
@@ -19,7 +17,10 @@
 
     /* Card in center */
     .card {
-      position: relative;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       background: rgba(0, 0, 0, 0.3);
       padding: 40px;
       border-radius: 20px;
