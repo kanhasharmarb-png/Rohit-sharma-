@@ -2,91 +2,102 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Surprise 💕</title>
+  <title>Surprise for You ❤️</title>
   <style>
     body {
       margin: 0;
-      height: 100vh;
+      padding: 0;
       background: black;
-      overflow: hidden;
       color: white;
-      font-family: cursive;
+      overflow: hidden;
+      font-family: "Brush Script MT", cursive;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      bottom: -10px;
+      color: #ff69b4;
+      font-size: 24px;
+      animation: floatUp 6s linear infinite;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-110vh); opacity: 0; }
+    }
+
+    /* Floating Sorry text */
+    .sorry {
+      position: fixed;
+      bottom: -20px;
+      color: rgba(255,255,255,0.2);
+      font-size: 20px;
+      animation: floatUp 8s linear infinite;
     }
 
     /* Scrolling text at top */
-    .scroll-text {
+    .scrolling-text {
       position: fixed;
       top: 10px;
       width: 100%;
       white-space: nowrap;
       overflow: hidden;
-      font-size: 28px;
-      font-weight: bold;
-      color: #ff4d6d;
-      z-index: 10;
     }
-    .scroll-text span {
+    .scrolling-text span {
       display: inline-block;
       padding-left: 100%;
-      animation: scroll-left 12s linear infinite;
+      animation: scrollLeft 15s linear infinite;
+      font-size: 28px;
+      color: #ff66cc;
     }
-    @keyframes scroll-left {
-      0%   { transform: translateX(100%); }
+
+    @keyframes scrollLeft {
+      0% { transform: translateX(100%); }
       100% { transform: translateX(-100%); }
-    }
-
-    /* Floating hearts */
-    .heart {
-      position: absolute;
-      color: #ff4d6d;
-      font-size: 24px;
-      animation: floatUp 6s linear infinite;
-      opacity: 0.8;
-    }
-    @keyframes floatUp {
-      0% { transform: translateY(100vh); opacity: 1; }
-      100% { transform: translateY(-10vh); opacity: 0; }
-    }
-
-    /* Floating sorry text */
-    .sorry {
-      position: absolute;
-      color: #ffd1dc;
-      font-size: 20px;
-      animation: floatUp 8s linear infinite;
-      opacity: 0.7;
     }
   </style>
 </head>
 <body>
-  <!-- Scrolling text -->
-  <div class="scroll-text"><span>Kaisa laga meri jaan??🫣💋💕</span></div>
 
-  <!-- Background audio -->
-  <audio id="bg-music" autoplay loop>
+  <!-- Background Song -->
+  <audio id="bgMusic" autoplay>
     <source src="song.mp3" type="audio/mpeg">
   </audio>
 
+  <!-- Scrolling Text -->
+  <div class="scrolling-text">
+    <span>Kaisa laga meri jaan??🫣💋💕</span>
+  </div>
+
   <script>
-    // Force play fix
-    const music = document.getElementById("bg-music");
-    document.addEventListener("click", () => music.play());
-    document.addEventListener("touchstart", () => music.play());
+    // Play music on tap if blocked
+    const music = document.getElementById("bgMusic");
+    document.body.addEventListener("click", () => {
+      music.play();
+    });
 
-    // Floating elements
-    function createElement(content, className) {
-      const el = document.createElement("div");
-      el.className = className;
-      el.textContent = content;
-      el.style.left = Math.random() * 100 + "vw";
-      el.style.fontSize = Math.random() * 20 + 20 + "px";
-      el.style.animationDuration = (Math.random() * 5 + 5) + "s";
-      document.body.appendChild(el);
-      setTimeout(() => el.remove(), 8000);
-    }
+    // Floating hearts
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (20 + Math.random() * 30) + "px";
+      heart.innerText = "💗";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 500);
 
-    setInterval(() => createElement("💗", "heart"), 600);
-    setInterval(() => createElement("Sorry 🥺🙏🏻", "sorry"), 1000);
+    // Floating Sorry
+    setInterval(() => {
+      const sorry = document.createElement("div");
+      sorry.className = "sorry";
+      sorry.style.left = Math.random() * 100 + "vw";
+      sorry.innerText = "Sorry";
+      document.body.appendChild(sorry);
+      setTimeout(() => sorry.remove(), 8000);
+    }, 1000);
   </script>
+
 </body>
 </html>
