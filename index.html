@@ -3,31 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>I Love You ❤️</title>
+  <title>I Love You</title>
   <style>
     body {
       margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: pink;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ff6fb7, #ff94c2);
       overflow: hidden;
-      font-family: 'Poppins', sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      color: white;
+      margin-top: 20px;
+      font-size: 28px; /* Top heading size */
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .love-box {
+      background: rgba(0,0,0,0.3);
+      color: white;
+      padding: 25px;
+      margin: 60px auto;
+      border-radius: 15px;
+      width: 80%;
+      max-width: 400px;
+    }
+
+    .love-box h2 {
+      font-size: 26px; /* "I Love You" */
+      margin-bottom: 15px;
+    }
+
+    .love-box p {
+      font-size: 18px; /* Text lines */
+      margin: 8px 0;
     }
 
     /* Floating hearts */
     .heart {
       position: absolute;
-      color: #ff4d88;
-      font-size: 24px; /* 👈 pehle wala size */
-      animation: floatUp 6s linear infinite;
+      color: #ff4da6;
+      font-size: 24px;
+      animation: float 6s linear infinite;
       opacity: 0.8;
     }
 
-    @keyframes floatUp {
+    @keyframes float {
       0% {
         transform: translateY(100vh) scale(0.8);
+        opacity: 0;
+      }
+      50% {
         opacity: 1;
       }
       100% {
@@ -35,55 +63,22 @@
         opacity: 0;
       }
     }
-
-    /* Floating text (Sorry Sorry...) */
-    .floating-text {
-      position: absolute;
-      font-size: 20px;   /* 👈 pehle wala exact */
-      font-weight: 600;
-      color: white;
-      opacity: 0.9;
-      animation: floatUp 8s linear infinite;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    /* Center card */
-    .card {
-      background: rgba(128, 0, 64, 0.8);
-      padding: 30px 40px;
-      border-radius: 20px;
-      text-align: center;
-      color: white;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-    }
-
-    .card h1 {
-      margin: 0;
-      font-size: 32px; /* 👈 heading pehle jaisa */
-    }
-
-    .card p {
-      margin: 15px 0 0;
-      font-size: 20px; /* 👈 content pehle jaisa */
-      font-weight: 600;
-    }
   </style>
 </head>
 <body>
-  <!-- Floating texts -->
-  <div class="floating-text" style="left: 10%; animation-delay: 1s;">Sorry Sorry sorry..🥺💗💋🫀</div>
-  <div class="floating-text" style="left: 70%; animation-delay: 3s;">Sorry Sorry sorry..🥺💗💋🫀</div>
-  <div class="floating-text" style="left: 40%; animation-delay: 5s;">Sorry Sorry sorry..🥺💗💋🫀</div>
+  <h1>Kaisa laga meri jaan?? 🫣💋💕</h1>
+
+  <div class="love-box">
+    <h2>💖 I Love You 💖</h2>
+    <p>Beauty meri jaan 🥺🤲😭💗👫</p>
+    <p>Mere se shaadi karlo... 🌍💋💕</p>
+  </div>
 
   <!-- Floating hearts -->
-  <div class="heart" style="left: 20%; animation-delay: 0s;">💖</div>
-  <div class="heart" style="left: 50%; animation-delay: 2s;">💖</div>
-  <div class="heart" style="left: 80%; animation-delay: 4s;">💖</div>
-
-  <!-- Center card -->
-  <div class="card">
-    <h1>💖 I Love You 💖</h1>
-    <p>Beauty meri jaan 🥺🤍😭💗👫<br>Mere se shaadi karlo...🌍💋💕</p>
-  </div>
+  <div class="heart" style="left:10%; animation-delay:0s;">💖</div>
+  <div class="heart" style="left:30%; animation-delay:2s;">💖</div>
+  <div class="heart" style="left:50%; animation-delay:4s;">💖</div>
+  <div class="heart" style="left:70%; animation-delay:1s;">💖</div>
+  <div class="heart" style="left:90%; animation-delay:3s;">💖</div>
 </body>
 </html>
