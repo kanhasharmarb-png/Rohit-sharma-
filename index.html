@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Surprise 💕</title>
+  <title>Gift Surprise 🎁</title>
   <style>
     body {
       margin: 0;
@@ -11,6 +11,41 @@
       overflow: hidden;
       color: white;
       font-family: cursive;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    /* Gift Box */
+    #gift-box {
+      font-size: 120px;
+      cursor: pointer;
+      animation: bounce 1s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Center text under gift */
+    #gift-text {
+      margin-top: 15px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #ff4d6d;
+      text-align: center;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.7; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* Hidden content */
+    #content {
+      display: none;
     }
 
     /* Scrolling text at top */
@@ -59,34 +94,45 @@
   </style>
 </head>
 <body>
-  <!-- Scrolling text -->
-  <div class="scroll-text"><span>Kaisa laga meri jaan??🫣💋💕</span></div>
+  <!-- Gift Box with text -->
+  <div id="gift-box">🎁</div>
+  <div id="gift-text">Open it please baby🫣🙈🫀</div>
 
-  <!-- Background audio -->
-  <audio id="bg-music" autoplay loop>
-    <source src="song.mp3" type="audio/mpeg">
-  </audio>
+  <!-- Hidden Surprise Content -->
+  <div id="content">
+    <div class="scroll-text"><span>Kaisa laga meri jaan??🫣💋💕</span></div>
+    <audio id="bg-music" loop>
+      <source src="song.mp3" type="audio/mpeg">
+    </audio>
+  </div>
 
   <script>
-    // Autoplay fix
+    const giftBox = document.getElementById("gift-box");
+    const giftText = document.getElementById("gift-text");
+    const content = document.getElementById("content");
     const music = document.getElementById("bg-music");
-    document.addEventListener("click", () => music.play());
-    document.addEventListener("touchstart", () => music.play());
 
-    // Floating hearts & sorry
-    function createElement(content, className) {
-      const el = document.createElement("div");
-      el.className = className;
-      el.textContent = content;
-      el.style.left = Math.random() * 100 + "vw";
-      el.style.fontSize = Math.random() * 20 + 20 + "px";
-      el.style.animationDuration = (Math.random() * 5 + 5) + "s";
-      document.body.appendChild(el);
-      setTimeout(() => el.remove(), 8000);
-    }
+    giftBox.addEventListener("click", () => {
+      giftBox.style.display = "none";
+      giftText.style.display = "none";
+      content.style.display = "block";
+      music.play();
 
-    setInterval(() => createElement("💗", "heart"), 600);
-    setInterval(() => createElement("Sorry 🥺🙏🏻", "sorry"), 1000);
+      // Floating hearts & sorry
+      function createElement(content, className) {
+        const el = document.createElement("div");
+        el.className = className;
+        el.textContent = content;
+        el.style.left = Math.random() * 100 + "vw";
+        el.style.fontSize = Math.random() * 20 + 20 + "px";
+        el.style.animationDuration = (Math.random() * 5 + 5) + "s";
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 8000);
+      }
+
+      setInterval(() => createElement("💗", "heart"), 600);
+      setInterval(() => createElement("Sorry 🥺🙏🏻", "sorry"), 1000);
+    });
   </script>
 </body>
 </html>
